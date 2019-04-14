@@ -1,0 +1,24 @@
+{
+  "name": "dindin",
+  "version": "1.0.0",
+  "description": "A social network for food",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js"
+  },
+  "author": "dagui",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "4.0.x",
+    "hapi": "13.x.x",
+    "hapi-auth-bearer-token": "4.x.x",
+    "inert": "3.x.x",
+    "sqlite3": "^4.0.6",
+    "vision": "4.x.x",
+    "wreck": "^7.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
