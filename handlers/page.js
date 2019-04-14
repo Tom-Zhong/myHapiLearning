@@ -8,3 +8,14 @@ exports.home = function(request, reply) {
     reply.view('index', {recipes: payload})
   })
 };
+
+exports.viewRecipe = function(request, reply) {
+
+  const apiUrl = this.apiBaseUrl + '/recipes/' + request.params.id;
+
+  Wreck.get(apiUrl, {json: true}, (err, res, payload) =>{
+    if (err) throw err;
+    // console.log(payload)
+    reply.view('recipe', {recipe: payload})
+  })
+};

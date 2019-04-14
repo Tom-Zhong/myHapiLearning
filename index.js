@@ -50,7 +50,8 @@ server.register(
       layoutPath: './views/layout',
       layout: true,
       isCached: false,
-      partialsPath: './views/partials'
+      partialsPath: './views/partials',
+      helpersPath: './views/helpers'
   });
     server.auth.strategy("api", "bearer-access-token", {
       validateFunc: validateFunc

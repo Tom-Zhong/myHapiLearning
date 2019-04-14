@@ -1,13 +1,18 @@
 "use strict";
 const Recipes = require("./handlers/recipes");
 const Assets = require("./handlers/assets");
-const Pages = require("./handlers/page")
+const Pages = require("./handlers/page");
 console.log(Assets);
 module.exports = [
   {
     method: "GET",
     path: "/",
     handler: Pages.home
+  },
+  {
+    method: "GET",
+    path: "/recipes/{id}",
+    handler: Pages.viewRecipe
   },
   {
     method: "GET",
