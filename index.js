@@ -36,23 +36,32 @@ const validateFunc = function(token, callback) {
 };
 
 server.register(
-  [require("hapi-auth-bearer-token"), require("inert"), require("vision")],
+  [
+    require("hapi-auth-bearer-token"),
+    require("inert"),
+    require("vision"),
+    require("hapi-auth-cookie")
+  ],
   err => {
     if (err) {
       throw err;
     }
     server.views({
       engines: {
-          hbs: require('handlebars')
+        hbs: require("handlebars")
       },
       relativeTo: __dirname,
-      path: './views',
-      layoutPath: './views/layout',
+      path: "./views",
+      layoutPath: "./views/layout",
       layout: true,
       isCached: false,
-      partialsPath: './views/partials',
-      helpersPath: './views/helpers'
-  });
+      partialsPath: "./views/partials",
+      helpersPath: "./views/helpers"
+    });
+    server.auth.strategy("session", "cookie", "try", {
+      password: "70fe4f26ff9bcb5aab079875cadeec09",
+      isSecure: false
+    });
     server.auth.strategy("api", "bearer-access-token", {
       validateFunc: validateFunc
     });

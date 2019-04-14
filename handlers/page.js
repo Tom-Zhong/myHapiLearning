@@ -5,7 +5,8 @@ exports.home = function(request, reply) {
 
   Wreck.get(apiUrl, {json: true}, (err, res, payload) =>{
     if (err) throw err;
-    reply.view('index', {recipes: payload})
+    // console.log(request.auth.credentials)
+    reply.view('index', {recipes: payload, user: request.auth.credentials})
   })
 };
 
@@ -19,3 +20,8 @@ exports.viewRecipe = function(request, reply) {
     reply.view('recipe', {recipe: payload})
   })
 };
+
+
+exports.login = function (request, reply) {
+  reply.view('login')
+}

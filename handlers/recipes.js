@@ -35,6 +35,24 @@ exports.findOne = function(request, reply) {
   );
 };
 
+// 分页器
+exports.pageQuery = function(request, reply) {
+  this.db.all(
+    "SELECT * FROM recipes LIMIT ?,3",
+    [request.params.pageNum * 3 - 3 > 0 ? request.params.pageNum * 3 - 3 : 0],
+    (err, result) => {
+      if (err) {
+        throw err;
+      }
+
+      if (typeof result !== "undefined") {
+        return reply(result);
+      }
+
+      return reply("Not found").code(404);
+    }
+  );
+};
 exports.create = function(request, reply) {
   const sql =
     "INSERT INTO recipes (name, cooking_time, prep_time, serves, cuisine, ingredients, directions, user_id) VALUES (?,?,?,?,?,?,?,?)";
